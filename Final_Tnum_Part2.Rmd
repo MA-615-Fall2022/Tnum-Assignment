@@ -1,0 +1,89 @@
+---
+title: "TnumPart2"
+author: "Bill Gao, HaoChen Pan, Hui Xiong"
+date: "2022-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tnum)
+tnum.loadLibs()
+tnum.authorize(ip="mssp.truenum.com:8080",creds = "haochep1@bu.edu:mastodon")
+
+```
+
+## Maine Population
+
+```{r}
+x_population_maine <- tnum.query("subj:Maine* and prop:population and numval:>200000")
+xmaine1 <-  mapply(FUN = tnum.addTag,
+                  guid = x_population_maine$id,
+                  tag = "Population: large",
+                  text = "The population in Maine")
+tnum.getTagsOfTn(x_population_maine[1,]$id)
+kable(x_population_maine)
+
+tn1 <- tnum.postStatement(
+  stmt = "Cumberland has the largest Population, which is 292307",
+  notes = "Our first truenumber"
+)
+
+
+```
+
+## Maine population no insurance
+
+```{r}
+x_noins_maine <- tnum.query("subj:Maine* and prop:population:no_health_insurance and numval:>10000")
+xmaine2 <-  mapply(FUN = tnum.addTag,
+                guid = x_noins_maine$id,
+                tag = "Population with no health insurance: large",
+                text = "The population of no health insurance in Maine")
+tnum.getTagsOfTn(x_noins_maine[1,]$id)
+kable(x_noins_maine)
+
+tn2 <- tnum.postStatement(
+  stmt = "The largest number of Maine at Cumberland that not having health insurance is 16666 ",
+  notes = "Our Second truenumber"
+)
+
+
+```
+
+## Maine Bachelors
+
+```{r}
+x_bachelors_maine <- tnum.query("subj:Maine* and prop:population:bachelors and numval:>60000")
+xmaine3 <-  mapply(FUN = tnum.addTag,
+                guid = x_bachelors_maine$id,
+                tag = "pop bachelors: large",
+                text = "number of bachelors within a county in Maine")
+tnum.getTagsOfTn(x_bachelors_maine[1,]$id)
+kable(x_bachelors_maine)
+
+tn3 <- tnum.postStatement(
+  stmt = "The largest number of bachelors within a county in Maine =  61773 ",
+  notes = "Our second truenumber")
+
+
+
+```
+
+## Maine Masters
+
+```{r}
+x_masters_maine <- tnum.query("subj:Maine* and prop:population:masters and numval:<27390")
+xmaine4 <-  mapply(FUN = tnum.addTag,
+                guid = x_masters_maine$id,
+                tag = "num of masters: Large",
+                text = "The biggest number of masters in Maine")
+tnum.getTagsOfTn(x_masters_maine[1,]$id)
+kable(x_masters_maine)
+
+tn4 <- tnum.postStatement(
+  stmt = "The biggest number of masters in Maine =  27390 ",
+  notes = "Our third truenumber")
+
+```

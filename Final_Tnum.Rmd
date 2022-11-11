@@ -1,0 +1,152 @@
+---
+title: "Tnum project Part 1"
+author: "Bill Gao Haochen Pan Hui Xiong"
+date: "2022-11-10"
+output:
+  html_document: default
+  pdf_document: default
+---
+# Book Report
+## The Time Machine *Book Written by  H.G. Wells*
+
+### Part 1 Preparation 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r}
+library(tnum)
+tnum.loadLibs()
+```
+
+```{r}
+tnum.authorize(ip="mssp.truenum.com:8080",creds = "haochep1@bu.edu:mastodon")
+
+```
+### Part 2 Introduction
+#### *The Time Machine* is a science fiction novella by H. G. Wells, published in 1895. It was a time of rapid development. In the 19th century, a group of people moved from the countryside to the city, the industry flourished, and new technologies rapidly changed people's lives. The Time Machine was a part of the author's warning to his contemporaries in the 1890s at a time when technology was booming. This is why this novel is still eye-catching in terms of character description, background design, and ending design in the 21st century.
+
+
+```{r}
+text_ch1 <- tnum.query("subj:Time_Machine:Chapter:1:*")
+text_ch2 <- tnum.query("subj:Time_Machine:Chapter:2:*")
+text_ch4 <- tnum.query("subj:Time_Machine:Chapter:4:*")
+text_ch5 <- tnum.query("subj:Time_Machine:Chapter:5:*")
+text_ch6 <- tnum.query("subj:Time_Machine:Chapter:6:*")
+text_ch7 <- tnum.query("subj:Time_Machine:Chapter:7:*")
+text_ch8 <- tnum.query("subj:Time_Machine:Chapter:8:*")
+text_ch10 <- tnum.query("subj:Time_Machine:Chapter:10:*")
+text_ch12 <- tnum.query("subj:Time_Machine:Chapter:12:*")
+# By this step, we select the useful chapters to consider in our report. With this step, we are able to enter part 3 with the analysis of body chapters
+```
+
+### Part 3 Body Chapters Analysis
+#### After dinner, the time traveler declares that time travel is possible in front of his friends. As almost no one believed, the time traveler traveled in time and showed up to the crowd at the banquet. The Time traveler has traveled far into the future. His time machine is stolen in the future. He then meets Eloi, who he considers to be elegant but less intelligent. He saved an Eloi named Weena who almost drowned in a well. Then the time traveler discovered that there was also someone who lived underground. He goes underground and encounters the Morlocks. Then he realized that the Morlocks may have eaten the Elois. The time traveler was attacked by the Morlocks and he wants to be able to defend himself, send Weena home, and get his time machine back. The time traveler inspected an ancient museum, obtained weapons, and was finally able to repair machines. Although he lost contact with Weena, he managed to get his time machine back. Then the time traveler keeps traveling further in time. He sees the end of earth. He watches the sun turning into a red giant. He then returns to the banquet as stated in the beginning of the book. That's the story of the time traveler. But no one believes in the time traveler, except the narrator. The narrator goes to talk to the time traveler the next day, and the time traveler says he will come back with evidence. However, the time traveler entered his laboratory and disappeared, never to return.
+
+
+
+### Part 4 Character Analysis
+#### Time traveler: In the context of the late 19th century, the time traveler was not just a brilliant scientist; he was also a top tier inventor. He's not entirely trusted by his friends, which puts him somewhere between a genius and a buffoon. Likewise, in travel to the future, the time traveler ponders much about the future of humanity in relation to machinery.
+#### Eloi-Morlock: Beautiful but fragile, savage and disgusting, this seems to be the most direct contrast between Eloi and Morlock. At the heart of the time-traveler, the theory is that the Eloys are the descendants of the rich who do nothing, and the Morlocks are the descendants of the working poor. Their relationship is at the heart of the novel's interest in how social class evolves over time: those at the top now may find themselves at the bottom later. Of course, the idea of Morlock eating Eloi is scary.
+
+
+#### We first search for the major character, Morlocks. The result shows Morlocks are mentioned 52 times
+```{r}
+ch7_Morlock <- tnum.query("subj:Time_Machine:Chapter:7:* and stringval:Morlock")
+ch8_Morlock <- tnum.query("subj:Time_Machine:Chapter:8:* and stringval:Morlock")
+ch9_Morlock <- tnum.query("subj:Time_Machine:Chapter:9:* and stringval:Morlock")
+ch10_Morlock <- tnum.query("subj:Time_Machine:Chapter:10:* and stringval:Morlock")
+ch11_Morlock <- tnum.query("subj:Time_Machine:Chapter:11:* and stringval:Morlock")
+ch12_Morlock <- tnum.query("subj:Time_Machine:Chapter:12:* and stringval:Morlock")
+all_Morlock <- tnum.query("subj:Time_Machine:* and stringval:Morlock")
+```
+
+#### Then we search Eloi. Unusually, Eloi is not mentioned too many times. I believe the reason is that for most of time, words like "little people" and Weena and other words are mentioned more in the chapters.
+```{r}
+ch3_Eloi <- tnum.query("subj:Time_Machine:Chapter:3:* and stringval:Eloi")
+ch4_Eloi <- tnum.query("subj:Time_Machine:Chapter:4:* and stringval:Eloi")
+ch5_Eloi <- tnum.query("subj:Time_Machine:Chapter:5:* and stringval:Eloi")
+ch6_Eloi <- tnum.query("subj:Time_Machine:Chapter:6:* and stringval:Eloi")
+ch7_Eloi <- tnum.query("subj:Time_Machine:Chapter:7:* and stringval:Eloi")
+ch8_Eloi <- tnum.query("subj:Time_Machine:Chapter:8:* and stringval:Eloi")
+ch9_Eloi <- tnum.query("subj:Time_Machine:Chapter:9:* and stringval:Eloi")
+ch10_Eloi <- tnum.query("subj:Time_Machine:Chapter:10:* and stringval:Eloi")
+ch11_Eloi <- tnum.query("subj:Time_Machine:Chapter:11:* and stringval:Eloi")
+ch12_Eloi <- tnum.query("subj:Time_Machine:Chapter:12:* and stringval:Eloi")
+all_Eloi <- tnum.query("subj:Time_Machine:* and stringval:Eloi")
+```
+
+#### Therefore, we search Weena, the second important character in the book to find results. 
+```{r}
+ch7_weena <- tnum.query("subj:Time_Machine:Chapter:7:* and stringval:weena")
+ch8_weena <- tnum.query("subj:Time_Machine:Chapter:8:* and stringval:weena")
+ch9_weena <- tnum.query("subj:Time_Machine:Chapter:9:* and stringval:weena")
+ch10_weena <- tnum.query("subj:Time_Machine:Chapter:10:* and stringval:weena")
+ch11_weena <- tnum.query("subj:Time_Machine:Chapter:11:* and stringval:weena")
+ch12_weena <- tnum.query("subj:Time_Machine:Chapter:12:* and stringval:weena")
+all_weena <- tnum.query("subj:Time_Machine:* and stringval:weena")
+```
+
+#### We can also use easier way to see the amount of results in a shorter code. While it cannot show the location of chapters. 
+```{r}
+timeTravel <- data.frame(tnum.query("stringval:time travel"))
+weena <- data.frame(tnum.query("stringval:Weena"))
+Morlock <- data.frame(tnum.query("stringval:Morlock"))
+Eloi <- data.frame(tnum.query("stringval:Eloi"))
+
+
+```
+
+#### After then, we want to use graph to find relations of variables mentioned in the book as a prove for the report. 
+```{r}
+tnum.graphTnumList(Morlock)
+
+```
+
+```{r}
+tnum.graphTnumList(timeTravel)
+```
+
+```{r}
+tnum.graphTnumList(weena)
+```
+
+
+```{r}
+tnum.graphTnumList(Eloi)
+```
+
+### Part 5: Idea and Plot analysis
+#### I think the core ideas of the novel's main expression are: Fear, Human Nature, and Future. Regarding fear, the author not only shows the fear of Morlock through the main perspective of a time traveler, but also expresses a kind of analysis of Economic class, society, and human nature of fear. This fear was justified in that era more than 100 years ago.
+#### Next is Human nature. The correspondence between nature and technology is a hot topic. There is no technology or even tools in the beautiful natural way of life of the Eloi people, while the Morlock people have tools, but choose to live underground. This comparison makes us think that the thinking and analysis of nature by people at that time is worth learning. 
+#### Finally, regarding the future, the time traveler sees a barren apocalypse in the future, which may reflect the unique pessimism and mystery of the novel.
+
+
+#### We try to enter the key words to finds results and make graphs
+```{r}
+fear <- data.frame(tnum.query("stringval:fear"))
+nature <- data.frame(tnum.query("stringval:nature"))
+future <- data.frame(tnum.query("stringval:future"))
+```
+
+```{r}
+tnum.graphTnumList(fear)
+```
+
+```{r}
+tnum.graphTnumList(nature)
+```
+
+```{r}
+tnum.graphTnumList(future)
+```
+
+### Part 6: Conclusion
+####   The genre of the article is very rich: it belongs to science fiction; dystopian literature and tragedy. 
+####   In science fiction, the characters in the story use mathematics to prove that time travel is possible, and then create a machine that travels through time.
+####   In a dystopian manner, this article described beautiful places and friendly Eloi, but could not hide the ugly truth about Morlocks. 
+####   In the end, this article is a tragedy: the time traveler loses Weena (though she may not be dead) and sees the apocalypse of Earth, but the truth of his words remain unknown.
+####   However, perhaps there are some positives in this thoughtful novel. For example, the narrator keeps two flowers that Weena gave to the time traveler. The flowers reminded him that "gratefulness and mutual tenderness remain in the heart" when all else has passed. I hope this blessing from more than 100 years ago can make us not forget people's initial gratitude and kindness in the 21st century.
+
+
